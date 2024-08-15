@@ -3,7 +3,7 @@ version: "3"
 services:
     elgg:
         build: ./image_www
-        image: seed-image-www
+        # image: seed-image-www
         container_name: elgg-10.9.0.5
         tty: true
         networks:
@@ -12,7 +12,7 @@ services:
 
     mysql:
         build: ./image_mysql
-        image: seed-image-mysql
+        # image: seed-image-mysql
         container_name: mysqlxss-10.9.0.6
         command: --default-authentication-plugin=mysql_native_password
         tty: true
