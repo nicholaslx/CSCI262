@@ -8,8 +8,6 @@ import (
 	"strconv"
 )
 
-
-
 type File struct {
 	Filename       string
 	Owner          string
@@ -35,7 +33,7 @@ func LoadFileStore() error{
 			fmt.Println("File Files.store created successfully.")
 			return nil
 		}else{
-			return fmt.Errorf("Error checking Files.store: %v",err)
+			return fmt.Errorf("error checking Files.store: %v",err)
 		}
 	}
 	// If the file exists, load its contents into memory
@@ -71,25 +69,7 @@ func LoadFileStore() error{
     return nil
 }
 
-//O_APPEND opens file in append mode, content is written to end of the file
-//O_CREATE creates file if it does not exist
 
-
-// func checkFileExists(filename string) bool {
-// 	file, err := ioutil.ReadFile("Files.store")
-// 	if err != nil{
-// 		fmt.Printf("Error reading file %v",err)
-// 	}
-
-// 	lines:= strings.Split(string(file), "\n")
-// 	for _,line := range lines{
-// 		parts := strings.Split(line, ":")
-// 		if len(parts)==3 && parts[0] == filename{
-// 			return true
-// 		}
-// 	}
-// 	return false
-// }
 func checkFileInMemory(filename string)bool{
 	for _, file:= range files{
 		if file.Filename == filename{
@@ -99,24 +79,6 @@ func checkFileInMemory(filename string)bool{
 	return false
 }
 
-// func CreateFile(username string, clearance int){
-// 	fmt.Println("Enter file name:")
-// 	var filename string
-// 	fmt.Scanln(&filename)
-
-// 	if checkFileExists(filename)||checkFileInMemory(filename){
-// 		fmt.Println("File already exists.")
-// 		return
-// 	}
-// 	file, err := os.OpenFile("Files.store", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
-// 	if err != nil{
-// 		fmt.Printf("Error opening file %v",err)
-// 	}
-// 	defer file.Close()
-// 	fileob:= File{Filename:filename, Owner:username, Classification:clearance, Content:""}
-// 	files = append(files, fileob)
-// 	fmt.Println("File created successfully.")
-// }
 
 func CreateFile(username string, clearance int) {
     fmt.Println("Enter file name:")
@@ -163,27 +125,6 @@ func AppendFile(username string, clearance int) {
     fmt.Printf("Error: file %s cannot be found.\n", filename)
 }
 
-// func ReadFile(username string, clearance int){
-// 	fmt.Println("Enter file name to read:")
-// 	var filename string
-// 	fmt.Scanln(&filename)
-
-// 	if !checkFileExists(filename) && !checkFileInMemory(filename){
-// 		fmt.Println("File does not exist.")
-// 		return
-// 	}
-// 	for _, file := range files{
-// 		if file.Filename == filename{
-// 			if clearance < file.Classification{
-// 				fmt.Println("You do not have enough clearance to read the file.")
-// 				return
-// 			}
-// 			fmt.Println(file.Content)
-// 			return
-// 		}
-// 	}
-// 	fmt.Printf("Error: file %s cannot be found.\n", filename)
-// }
 
 func ReadFile(username string, clearance int) {
     fmt.Println("Enter file name to read:")
